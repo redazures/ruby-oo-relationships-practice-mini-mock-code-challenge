@@ -1,27 +1,34 @@
 class Author
 
-    attr_accessor :author_name, :author, :title, :content
-    @@all =[]
+    attr_accessor :author_name
+    @@all=[]
 
-    def initialize (name)
-        @author_name=name
-        @@all<<self 
-    end 
+    def initialize(author_name)
+        @author_name=author_name
+        @@all<<self
+    end
 
     def self.all
         @@all
     end
 
-    def books
-        Book.all.select{|e|e.author==self} #I am using e for each of the items inside Books
+    def authored (book)
+        Authored.new(self,book)
     end
 
-    def write_book(title,content)
-        Book.new(title,self,content)
+    def books 
+        Authored.all.select{|e|e.author==self}
+    end
+
+    def write_book (book)
+        authored(book)
     end
 
     def total_words
-        books.map{|e|e.content}.flatten.join(' ').split(' ').count
+        x=books.map{|e|e.book}.map{|e|e.content}.flatten.join(' ').split(' ').count
+        # x=x.map{|e|e.content}
+        # x=x.map{|e|e.word_count}
+        # x.select.{|e|e.total_words}
     end
 
     def self.most_words
@@ -29,7 +36,8 @@ class Author
         count=0 #tracks most words
         extra=[] #this array will catch any author that ties the most words after the first most words author is ID
         Author.all.each do |e|
-            # puts e.total_words
+            puts e.total_words
+            puts e
             most = e if e.total_words > count
             extra<< e if e.total_words == count
             count= e.total_words if e.total_words>count
