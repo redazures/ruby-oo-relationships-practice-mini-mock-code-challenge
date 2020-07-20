@@ -25,6 +25,7 @@ dungeons=Book.new("dungeons",dungeons)
 kyle=Book.new("kyle",kyle)
 bball=Book.new("mj",bball)
 krystal=Book.new("krystal",krystal)
+james=Book.new("james",["ya know I always love you"])
 #authored needs author and book
 dungeons_a=yas.write_book(dungeons)
 kyle_a=ben.authored(kyle)
@@ -37,16 +38,16 @@ Book.all # all books with title, and content
 x = bball.author #returns book author object
 y= bball.author.author_name #returns book author name
 z= bball.title # returns book titile 
-# a= bball.word_count #returns the strings inside the content
+a= bball.word_count #returns the strings inside the content
 
-# #calling the methods for class Author
-# b=Author.all #All authors
-# c=ben.books #return all books by author
-# d=ben.write_book("james",["ya know I always love you"]) #Authorben writes book #take this line out to test a tie for most words
-# e=ben.total_words #returns total number words author has written across all books
-# f=dAuthor.most_words #returns author who has written the most words. returns an array of of authors if there is a tie for most
-# #b=ben.books # all books for this author
-# #c records 2 books and ben actually has 3 books, but 3rd book was not record by c due to timing
+#calling the methods for class Author
+b=Author.all #All authors
+c=ben.books #return all books by author
+d=ben.write_book(james) #Authorben writes book #take this line out to test a tie for most words
+e=ben.total_words #returns total number words author has written across all books
+f=Author.most_words #returns author who has written the most words. returns an array of of authors if there is a tie for most
+#b=ben.books # all books for this author
+#c records 2 books and ben actually has 3 books, but 3rd book was not record by c due to timing
 
 
 binding.pry
