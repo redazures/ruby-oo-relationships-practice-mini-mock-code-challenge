@@ -1,16 +1,21 @@
 class Authored
     
-    attr_accessor :author, :book
+    attr_reader :author, :book
     @@all=[]
 
-    def initialize (author, book)
-        @author=author
+    def initialize (book, author)        
         @book=book
-        @@all<<self
+        @author=author
+        save
     end
 
     def self.all
         @@all
+    end
+
+    private 
+    def save
+    @@all<<self
     end
 
 end

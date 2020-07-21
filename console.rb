@@ -6,48 +6,22 @@ require_relative './authored'
 # #Authors
 yas=Author.new("Yaz Jules")
 ben=Author.new("Ben Su")
+kry=Author.new("Krystal Wong")
 kev=Author.new("Kev Thompson")
 
-dungeons= ["The game was again published as three core rulebooks which incorporated the expansions and revisions which had been published in various supplements over the previous decade."]
-kyle= ["Goo Goo Ga Ga. Kyle is my baby. I love Krystal. I don't love you no more"]
-# bball= ["Why Michael Jordan Is the GOAT","He has a better Finals record as well as three more rings than LeBron. He also has three more All-Defense selections and one more MVP award. He also has a Defensive Player of the Year award, an accomplishment that has eluded James."]
-bball= ["Why Michael Jordan Is the GOAT"]
-krystal=["We live in Queens now, James. Three More words"]
-
-#books need title, author, content
-# dungeons=Book.new("dungeons",yas,dungeons)
-# kyle=Book.new("kyle",ben,kyle)
-# bball=Book.new("mj",kev,bball)
-# krystal=Book.new("krystal",ben,krystal)
-
 #**************Adjusted Books for Many to Many******************
-dungeons=Book.new("dungeons",dungeons)
-kyle=Book.new("kyle",kyle)
-bball=Book.new("mj",bball)
-krystal=Book.new("krystal",krystal)
-james=Book.new("james",["ya know I always love you"])
-#authored needs author and book
-dungeons_a=yas.write_book(dungeons)
-kyle_a=ben.authored(kyle)
-bball_a=kev.authored(bball)
-krystal_a=ben.authored(krystal)
+dungeons=Book.new("dungeons",1279)
+kyle=Book.new("kyle",435)
+bball=Book.new("mj",169)
+krystal=Book.new("krystal",746)
+# james=ben.write_book("james",342)
+dungeons_a=Authored.new(dungeons,yas)
+kyle_a=Authored.new(kyle,ben)
+kyle_a=Authored.new(kyle,kry)
+bball_a=Authored.new(bball,kev)
+krystal_a=Authored.new(krystal,ben)
+
 #^^^^^^^^^^^^^^Adjusted Books for Many to Many^^^^^^^^^^^^^^^^^^
-
-#calling the following methods for class Book
-Book.all # all books with title, and content
-x = bball.author #returns book author object
-y= bball.author.author_name #returns book author name
-z= bball.title # returns book titile 
-a= bball.word_count #returns the strings inside the content
-
-#calling the methods for class Author
-b=Author.all #All authors
-c=ben.books #return all books by author
-d=ben.write_book(james) #Authorben writes book #take this line out to test a tie for most words
-e=ben.total_words #returns total number words author has written across all books
-f=Author.most_words #returns author who has written the most words. returns an array of of authors if there is a tie for most
-#b=ben.books # all books for this author
-#c records 2 books and ben actually has 3 books, but 3rd book was not record by c due to timing
 
 
 binding.pry

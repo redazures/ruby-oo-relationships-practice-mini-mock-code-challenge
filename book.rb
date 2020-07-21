@@ -1,26 +1,29 @@
 class Book
 
-    attr_accessor :title, :content
+    attr_reader :title, :word_count
     @@all=[]
 
-    def initialize (title,content)
+    def initialize (title,word_count)
         @title=title
-        temp_array=Array.new(1,content)
-        @content=temp_array.flatten
-        @@all<<self
+        @word_count=word_count
+        save
     end
 
     def self.all
         @@all
     end
 
-    def author
-        # phrase="This book has not been authored by anyone yet. Claim it today"
-        x= Authored.all.select{|e|e.book==self} #if x.length>0
-        x[0].author
+    def book_authored
+        Authored.all.select{|e|e.book==self}
     end
 
-    def word_count
-        @content.join(' ').split(' ').count #join will allow my arrays to join all the strings inside if there are any
+    def authors
+        self.book_authored.map{|e|e.author} #.uniq #if x.length>0
     end
+
+    private 
+    def save
+    @@all<<self
+    end
+
 end
