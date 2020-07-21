@@ -16,6 +16,10 @@ class Author
         Authored.all.select{|e|e.author==self}
     end
 
+    def write_book(title,word_count)
+        Authored.new(Book.new(title,word_count),self)
+    end
+
     def total_words
         self.books.sum{|e|e.book.word_count}
     end
